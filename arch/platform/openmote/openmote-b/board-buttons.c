@@ -29,25 +29,29 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 /*---------------------------------------------------------------------------*/
-#include "contiki.h"
-#include "dev/gpio-hal.h"
-/*---------------------------------------------------------------------------*/
-/*
- * LEDs on the OpenMote-CC2538 are connected as follows:
- * - LED1 (Red)    -> PC4 (gpio_hal_pin_t 20)
- * - LED2 (Yellow) -> PC6 (gpio_hal_pin_t 22)
- * - LED3 (Green)  -> PC7 (gpio_hal_pin_t 23)
- * - LED4 (Orange) -> PC5
+/**
+ * \addtogroup openmote-b
+ * @{
+ *
+ * \defgroup openmote-b-buttons OpenMote-B user button
+ *
+ * Generic module controlling the user button on the OpenMote-B
+ * @{
+ *
+ * \file
+ * Defines the OpenMote-B user button for use with the button HAL
  */
-gpio_hal_pin_t out_pin1 = 20;
-gpio_hal_pin_t out_pin2 = 22;
-gpio_hal_pin_t out_pin3 = 23;
 /*---------------------------------------------------------------------------*/
-#ifdef CONTIKI_BOARD_OPENMOTE_B
-/* Button pin: PD5 */
-gpio_hal_pin_t btn_pin = 29;
-#else /* CONTIKI_BOARD_OPENMOTE_B */
-/* Button pin: PC3 */
-gpio_hal_pin_t btn_pin = 19;
-#endif /* CONTIKI_BOARD_OPENMOTE_B */
+#include "contiki.h"
+#include "dev/button-hal.h"
 /*---------------------------------------------------------------------------*/
+BUTTON_HAL_BUTTON(button_user, "User button", \
+                  GPIO_PORT_PIN_TO_GPIO_HAL_PIN(BUTTON_USER_PORT, BUTTON_USER_PIN), \
+                  GPIO_HAL_PIN_CFG_EDGE_FALLING, BUTTON_HAL_ID_USER_BUTTON, true);
+/*---------------------------------------------------------------------------*/
+BUTTON_HAL_BUTTONS(&button_user);
+/*---------------------------------------------------------------------------*/
+/**
+ * @}
+ * @}
+ */
