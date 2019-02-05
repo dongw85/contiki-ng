@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, George Oikonomou - http://www.spd.gr
+ * Copyright (c) 2018, George Oikonomou - http://www.spd.gr
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,24 +30,27 @@
  */
 /*---------------------------------------------------------------------------*/
 #include "contiki.h"
+#include "dev/leds.h"
 #include "dev/gpio-hal.h"
+
+#include <stdbool.h>
 /*---------------------------------------------------------------------------*/
-/*
- * LEDs on the OpenMote-CC2538 are connected as follows:
- * - LED1 (Red)    -> PC4 (gpio_hal_pin_t 20)
- * - LED2 (Yellow) -> PC6 (gpio_hal_pin_t 22)
- * - LED3 (Green)  -> PC7 (gpio_hal_pin_t 23)
- * - LED4 (Orange) -> PC5
- */
-gpio_hal_pin_t out_pin1 = 20;
-gpio_hal_pin_t out_pin2 = 22;
-gpio_hal_pin_t out_pin3 = 23;
-/*---------------------------------------------------------------------------*/
-#ifdef CONTIKI_BOARD_OPENMOTE_B
-/* Button pin: PD5 */
-gpio_hal_pin_t btn_pin = 29;
-#else /* CONTIKI_BOARD_OPENMOTE_B */
-/* Button pin: PC3 */
-gpio_hal_pin_t btn_pin = 19;
-#endif /* CONTIKI_BOARD_OPENMOTE_B */
+const leds_t leds_arch_leds[] = {
+  {
+    .pin = GPIO_PORT_PIN_TO_GPIO_HAL_PIN(LEDS_ARCH_L1_PORT, LEDS_ARCH_L1_PIN),
+    .negative_logic = true
+  },
+  {
+    .pin = GPIO_PORT_PIN_TO_GPIO_HAL_PIN(LEDS_ARCH_L2_PORT, LEDS_ARCH_L2_PIN),
+    .negative_logic = true
+  },
+  {
+    .pin = GPIO_PORT_PIN_TO_GPIO_HAL_PIN(LEDS_ARCH_L3_PORT, LEDS_ARCH_L3_PIN),
+    .negative_logic = true
+  },
+  {
+    .pin = GPIO_PORT_PIN_TO_GPIO_HAL_PIN(LEDS_ARCH_L4_PORT, LEDS_ARCH_L4_PIN),
+    .negative_logic = true
+  },
+};
 /*---------------------------------------------------------------------------*/

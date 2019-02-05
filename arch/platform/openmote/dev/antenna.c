@@ -1,11 +1,10 @@
 /*
- * Copyright (c) 2017, George Oikonomou - http://www.spd.gr
+ * Copyright (c) 2014, Thingsquare, http://www.thingsquare.com/.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
  *    notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
@@ -27,27 +26,54 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * This file is part of the Contiki operating system.
+ *
+ */
+/*---------------------------------------------------------------------------*/
+/**
+ * \addtogroup openmote-antenna
+ * @{
+ *
+ * Driver for the OpenMote-CC2538 RF switch.
+ * INT is the internal antenna (chip) configured through ANT1_SEL (V1)
+ * EXT is the external antenna (connector) configured through ANT2_SEL (V2)
+ * @{
+ *
+ * \file
+ * Driver implementation for the OpenMote-CC2538 antenna switch
  */
 /*---------------------------------------------------------------------------*/
 #include "contiki.h"
-#include "dev/gpio-hal.h"
+#include "dev/gpio.h"
+#include "dev/antenna.h"
 /*---------------------------------------------------------------------------*/
-/*
- * LEDs on the OpenMote-CC2538 are connected as follows:
- * - LED1 (Red)    -> PC4 (gpio_hal_pin_t 20)
- * - LED2 (Yellow) -> PC6 (gpio_hal_pin_t 22)
- * - LED3 (Green)  -> PC7 (gpio_hal_pin_t 23)
- * - LED4 (Orange) -> PC5
+void
+antenna_init(void)
+{
+  /* Configure the ANT1 and ANT2 GPIO as output */
+  GPIO_SET_OUTPUT(ANTENNA_BSP_RADIO_BASE, ANTENNA_BSP_RADIO_INT);
+  GPIO_SET_OUTPUT(ANTENNA_BSP_RADIO_BASE, ANTENNA_BSP_RADIO_EXT);
+
+  /* Select external antenna by default. */
+  antenna_external();
+}
+/*---------------------------------------------------------------------------*/
+void
+antenna_external(void)
+{
+  GPIO_WRITE_PIN(ANTENNA_BSP_RADIO_BASE, ANTENNA_BSP_RADIO_INT, 0);
+  GPIO_WRITE_PIN(ANTENNA_BSP_RADIO_BASE, ANTENNA_BSP_RADIO_EXT, 1);
+}
+/*---------------------------------------------------------------------------*/
+void
+antenna_internal(void)
+{
+  GPIO_WRITE_PIN(ANTENNA_BSP_RADIO_BASE, ANTENNA_BSP_RADIO_EXT, 0);
+  GPIO_WRITE_PIN(ANTENNA_BSP_RADIO_BASE, ANTENNA_BSP_RADIO_INT, 1);
+}
+/*---------------------------------------------------------------------------*/
+/**
+ * @}
+ * @}
  */
-gpio_hal_pin_t out_pin1 = 20;
-gpio_hal_pin_t out_pin2 = 22;
-gpio_hal_pin_t out_pin3 = 23;
-/*---------------------------------------------------------------------------*/
-#ifdef CONTIKI_BOARD_OPENMOTE_B
-/* Button pin: PD5 */
-gpio_hal_pin_t btn_pin = 29;
-#else /* CONTIKI_BOARD_OPENMOTE_B */
-/* Button pin: PC3 */
-gpio_hal_pin_t btn_pin = 19;
-#endif /* CONTIKI_BOARD_OPENMOTE_B */
-/*---------------------------------------------------------------------------*/
