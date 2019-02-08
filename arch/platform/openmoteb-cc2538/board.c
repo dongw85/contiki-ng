@@ -32,11 +32,11 @@
  */
 /*---------------------------------------------------------------------------*/
 /**
- * \addtogroup openmote-cc2538
+ * \addtogroup openmoteb-cc2538
  * @{
  *
  * \file
- *  Board-initialisation for the OpenMote-CC2538 platform
+ *  Board-initialisation for the OpenMoteB-CC2538 platform
  */
 /*---------------------------------------------------------------------------*/
 #include "contiki.h"
