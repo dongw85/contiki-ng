@@ -30,16 +30,16 @@
  */
 /*---------------------------------------------------------------------------*/
 /**
- * \addtogroup openmote-cc2538
+ * \addtogroup openmoteb-cc2538
  * @{
  *
- * \defgroup openmote-cc2538-buttons OpenMote-CC2538 user button
+ * \defgroup openmoteb-cc2538-buttons OpenMoteB-CC2538 user button
  *
- * Generic module controlling the user button on the OpenMote-CC2538
+ * Generic module controlling the user button on the OpenMoteB-CC2538
  * @{
  *
  * \file
- * Defines the OpenMote-CC2538 user button for use with the button HAL
+ * Defines the OpenMoteB-CC2538 user button for use with the button HAL
  */
 /*---------------------------------------------------------------------------*/
 #include "contiki.h"
@@ -47,7 +47,7 @@
 /*---------------------------------------------------------------------------*/
 BUTTON_HAL_BUTTON(button_user, "User button", \
                   GPIO_PORT_PIN_TO_GPIO_HAL_PIN(BUTTON_USER_PORT, BUTTON_USER_PIN), \
-                  GPIO_HAL_PIN_CFG_PULL_UP, BUTTON_HAL_ID_USER_BUTTON, true);
+                  GPIO_HAL_PIN_CFG_EDGE_FALLING, BUTTON_HAL_ID_USER_BUTTON, true);
 /*---------------------------------------------------------------------------*/
 BUTTON_HAL_BUTTONS(&button_user);
 /*---------------------------------------------------------------------------*/

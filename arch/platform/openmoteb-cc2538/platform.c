@@ -42,7 +42,7 @@
  * @{
  *
  * \file
- * Main module for the OpenMote-CC2538 platform
+ * Main module for the OpenMoteB-CC2538 platform
  */
 /*---------------------------------------------------------------------------*/
 #include "contiki.h"

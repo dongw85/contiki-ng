@@ -49,7 +49,7 @@
 #include "dev/antenna.h"
 /*---------------------------------------------------------------------------*/
 #define BSP_RADIO_BASE              GPIO_PORT_TO_BASE(GPIO_D_NUM)
-#define BSP_RADIO_INT               GPIO_PIN_MASK(5)
+#define BSP_RADIO_INT               GPIO_PIN_MASK(3)
 #define BSP_RADIO_EXT               GPIO_PIN_MASK(4)
 /*---------------------------------------------------------------------------*/
 void

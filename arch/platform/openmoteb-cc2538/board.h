@@ -116,16 +116,16 @@
 #define UART1_RTS_PIN            (-1)
 /** @} */
 /*---------------------------------------------------------------------------*/
-/** \name OpenMote-CC2538 Button configuration
+/** \name OpenMoteB-CC2538 Button configuration
  *
- * Buttons on the OpenMote-CC2538 are connected as follows:
- * - BUTTON_USER -> PC3
+ * Buttons on the OpenMoteB-CC2538 are connected as follows:
+ * - BUTTON_USER -> PD5
  * @{
  */
-/** BUTTON_USER -> PC3 */
-#define BUTTON_USER_PORT       GPIO_C_NUM
-#define BUTTON_USER_PIN        3
-#define BUTTON_USER_VECTOR     GPIO_C_IRQn
+/** BUTTON_USER -> PD5 */
+#define BUTTON_USER_PORT       GPIO_D_NUM
+#define BUTTON_USER_PIN        5
+#define BUTTON_USER_VECTOR     GPIO_D_IRQn
 /* Notify various examples that we have Buttons */
 #define PLATFORM_HAS_BUTTON    1
 #define PLATFORM_SUPPORTS_BUTTON_HAL 1
@@ -190,7 +190,7 @@
  * \name Device string used on startup
  * @{
  */
-#define BOARD_STRING "OpenMote-CC2538"
+#define BOARD_STRING "OpenMoteB-CC2538"
 /** @} */
 /*---------------------------------------------------------------------------*/
 #endif /* BOARD_H_ */
