@@ -1160,6 +1160,7 @@ max_payload(void)
 
   if(res == RADIO_RESULT_NOT_SUPPORTED) {
     LOG_ERR("Failed to retrieve max radio driver payload length\n");
+    return 0;
   }
 
   /* Setup security... before. */
