@@ -1,10 +1,11 @@
 /*
- * Copyright (c) 2014, Thingsquare, http://www.thingsquare.com/.
+ * Copyright (c) 2017, George Oikonomou - http://www.spd.gr
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
+ *
  * 1. Redistributions of source code must retain the above copyright
  *    notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
@@ -26,56 +27,29 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * This file is part of the Contiki operating system.
- *
  */
 /*---------------------------------------------------------------------------*/
 /**
- * \addtogroup openmote-antenna
+ * \addtogroup openmote-b
  * @{
  *
- * Driver for the OpenMote-CC2538 RF switch.
- * INT is the internal antenna (chip) configured through ANT1_SEL (V1)
- * EXT is the external antenna (connector) configured through ANT2_SEL (V2)
+ * \defgroup openmote-b-buttons OpenMote-B user button
+ *
+ * Generic module controlling the user button on the OpenMote-B
  * @{
  *
  * \file
- * Driver implementation for the OpenMote-CC2538 antenna switch
+ * Defines the OpenMote-B user button for use with the button HAL
  */
 /*---------------------------------------------------------------------------*/
 #include "contiki.h"
-#include "dev/gpio.h"
-#include "dev/antenna.h"
+#include "dev/button-hal.h"
 /*---------------------------------------------------------------------------*/
-#define BSP_RADIO_BASE              GPIO_PORT_TO_BASE(GPIO_D_NUM)
-#define BSP_RADIO_INT               GPIO_PIN_MASK(3)
-#define BSP_RADIO_EXT               GPIO_PIN_MASK(4)
+BUTTON_HAL_BUTTON(button_user, "User button", \
+                  GPIO_PORT_PIN_TO_GPIO_HAL_PIN(BUTTON_USER_PORT, BUTTON_USER_PIN), \
+                  GPIO_HAL_PIN_CFG_EDGE_FALLING, BUTTON_HAL_ID_USER_BUTTON, true);
 /*---------------------------------------------------------------------------*/
-void
-antenna_init(void)
-{
-  /* Configure the ANT1 and ANT2 GPIO as output */
-  GPIO_SET_OUTPUT(BSP_RADIO_BASE, BSP_RADIO_INT);
-  GPIO_SET_OUTPUT(BSP_RADIO_BASE, BSP_RADIO_EXT);
-
-  /* Select external antenna by default. */
-  antenna_external();
-}
-/*---------------------------------------------------------------------------*/
-void
-antenna_external(void)
-{
-  GPIO_WRITE_PIN(BSP_RADIO_BASE, BSP_RADIO_INT, 0);
-  GPIO_WRITE_PIN(BSP_RADIO_BASE, BSP_RADIO_EXT, 1);
-}
-/*---------------------------------------------------------------------------*/
-void
-antenna_internal(void)
-{
-  GPIO_WRITE_PIN(BSP_RADIO_BASE, BSP_RADIO_EXT, 0);
-  GPIO_WRITE_PIN(BSP_RADIO_BASE, BSP_RADIO_INT, 1);
-}
+BUTTON_HAL_BUTTONS(&button_user);
 /*---------------------------------------------------------------------------*/
 /**
  * @}

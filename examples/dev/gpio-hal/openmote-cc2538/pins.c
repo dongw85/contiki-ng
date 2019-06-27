@@ -43,6 +43,11 @@ gpio_hal_pin_t out_pin1 = 20;
 gpio_hal_pin_t out_pin2 = 22;
 gpio_hal_pin_t out_pin3 = 23;
 /*---------------------------------------------------------------------------*/
+#ifdef CONTIKI_BOARD_OPENMOTE_B
+/* Button pin: PD5 */
+gpio_hal_pin_t btn_pin = 29;
+#else /* CONTIKI_BOARD_OPENMOTE_B */
 /* Button pin: PC3 */
 gpio_hal_pin_t btn_pin = 19;
+#endif /* CONTIKI_BOARD_OPENMOTE_B */
 /*---------------------------------------------------------------------------*/

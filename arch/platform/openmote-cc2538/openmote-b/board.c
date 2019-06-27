@@ -1,11 +1,10 @@
 /*
- * Copyright (c) 2017, George Oikonomou - http://www.spd.gr
+ * Copyright (c) 2014, Texas Instruments Incorporated - http://www.ti.com/
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
  * 1. Redistributions of source code must retain the above copyright
  *    notice, this list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright
@@ -27,31 +26,37 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * This file is part of the Contiki operating system.
+ *
  */
 /*---------------------------------------------------------------------------*/
 /**
- * \addtogroup openmoteb-cc2538
- * @{
- *
- * \defgroup openmoteb-cc2538-buttons OpenMoteB-CC2538 user button
- *
- * Generic module controlling the user button on the OpenMoteB-CC2538
+ * \addtogroup openmote-b
  * @{
  *
  * \file
- * Defines the OpenMoteB-CC2538 user button for use with the button HAL
+ *  Board-initialisation for the OpenMote-B platform
  */
 /*---------------------------------------------------------------------------*/
 #include "contiki.h"
-#include "dev/button-hal.h"
+#include "dev/antenna.h"
+#include <stdint.h>
+#include <string.h>
 /*---------------------------------------------------------------------------*/
-BUTTON_HAL_BUTTON(button_user, "User button", \
-                  GPIO_PORT_PIN_TO_GPIO_HAL_PIN(BUTTON_USER_PORT, BUTTON_USER_PIN), \
-                  GPIO_HAL_PIN_CFG_EDGE_FALLING, BUTTON_HAL_ID_USER_BUTTON, true);
+static void
+configure_unused_pins(void)
+{
+  /* FIXME */
+}
 /*---------------------------------------------------------------------------*/
-BUTTON_HAL_BUTTONS(&button_user);
+void
+board_init()
+{
+  antenna_init();
+  configure_unused_pins();
+}
 /*---------------------------------------------------------------------------*/
 /**
- * @}
  * @}
  */

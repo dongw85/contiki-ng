@@ -75,7 +75,7 @@
 /*---------------------------------------------------------------------------*/
 /* Log configuration */
 #include "sys/log.h"
-#define LOG_MODULE "OpenMote CC2538"
+#define LOG_MODULE "OpenMote"
 #define LOG_LEVEL LOG_LEVEL_MAIN
 /*---------------------------------------------------------------------------*/
 /**

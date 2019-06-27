@@ -60,6 +60,19 @@
 #include "cc2538-def.h"
 /*---------------------------------------------------------------------------*/
 /**
+ * \name CC2538 System Control configuration
+ *
+ * @{
+ */
+#ifndef SYS_CTRL_CONF_OSC32K_USE_XTAL
+#define SYS_CTRL_CONF_OSC32K_USE_XTAL   1 /**< Use the on-board 32.768-kHz crystal */
+#endif
+/** @} */
+/*---------------------------------------------------------------------------*/
+/* board.h assumes that basic configuration is done */
+#include "board.h"
+/*---------------------------------------------------------------------------*/
+/**
  * \name Serial Boot Loader Backdoor configuration
  *
  * @{
@@ -76,19 +89,6 @@
 #define FLASH_CCA_CONF_BOOTLDR_BACKDOOR_ACTIVE_HIGH 0 /**< A logic low level activates the boot loader */
 #endif
 /** @} */
-/*---------------------------------------------------------------------------*/
-/**
- * \name CC2538 System Control configuration
- *
- * @{
- */
-#ifndef SYS_CTRL_CONF_OSC32K_USE_XTAL
-#define SYS_CTRL_CONF_OSC32K_USE_XTAL   1 /**< Use the on-board 32.768-kHz crystal */
-#endif
-/** @} */
-/*---------------------------------------------------------------------------*/
-/* board.h assumes that basic configuration is done */
-#include "board.h"
 /*---------------------------------------------------------------------------*/
 /* Include CPU-related configuration */
 #include "cc2538-conf.h"
