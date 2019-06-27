@@ -1,4 +1,4 @@
-# openmote-cc2538 platform makefile
+# openmote platform makefile
 
 ifndef CONTIKI
   $(error CONTIKI not defined! You must specify where CONTIKI resides!)

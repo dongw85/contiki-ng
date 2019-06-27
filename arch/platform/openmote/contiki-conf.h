@@ -31,19 +31,19 @@
  */
 /*---------------------------------------------------------------------------*/
 /**
- * \addtogroup openmote-cc2538
+ * \addtogroup openmote
  * @{
  *
- * \defgroup openmote-cc2538-platforms OpenMote-CC2538 platform
+ * \defgroup openmote-platforms OpenMote platform
  *
- * The OpenMote-CC2538 platform was designed at UC Berkeley in 2013 and
+ * The OpenMote platform was designed at UC Berkeley in 2013 and
  * is comercialized by OpenMote Technologies since 2014. It is the first
  * commercial platform based on the powerful TI CC2538 SoC. It uses a
  * XBee form-factor to ease prototyping.
  * @{
  *
  * \file
- *  Configuration for the OpenMote-CC2538 platform
+ *  Configuration for the OpenMote platform
  */
 #ifndef CONTIKI_CONF_H_
 #define CONTIKI_CONF_H_
